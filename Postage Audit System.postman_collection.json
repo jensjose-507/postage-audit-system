@@ -1,0 +1,99 @@
+{
+  "info": {
+    "_postman_id": "0033da8b-08a6-49eb-a088-82e7f98c980e",
+    "name": "Postage Audit System",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "41342621"
+  },
+  "item": [
+    {
+      "name": "Test Case A: DIM Weight Trap",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"trackingNumber\": \"9400111899551001\",\r\n  \"facilityId\": \"DEN-PDC-01\",\r\n  \"declaredService\": \"GROUND_ADVANTAGE\",\r\n  \"declaredWeightLbs\": 1.0,\r\n  \"paidAmount\": 5.40,\r\n  \"actualWeightLbs\": 1.2,\r\n  \"lengthIn\": 20,\r\n  \"widthIn\": 16,\r\n  \"heightIn\": 12,\r\n  \"detectedPackaging\": \"CUSTOMER_BOX\"\r\n}\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8081/api/scans/dimension",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8081",
+          "path": [
+            "api",
+            "scans",
+            "dimension"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Test Case B: Priority Box Mismatch",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"trackingNumber\": \"9400111899551002\",\r\n  \"facilityId\": \"DEN-PDC-01\",\r\n  \"declaredService\": \"GROUND_ADVANTAGE\",\r\n  \"declaredWeightLbs\": 2.0,\r\n  \"paidAmount\": 6.35,\r\n  \"actualWeightLbs\": 2.0,\r\n  \"lengthIn\": 12,\r\n  \"widthIn\": 10,\r\n  \"heightIn\": 6,\r\n  \"detectedPackaging\": \"PRIORITY_BRANDED_BOX\"\r\n}\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8081/api/scans/dimension",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8081",
+          "path": [
+            "api",
+            "scans",
+            "dimension"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Violations Summary",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    },
+    {
+      "name": "Recovered Revenue Summary",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8082/api/audits/summary",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8082",
+          "path": [
+            "api",
+            "audits",
+            "summary"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
